@@ -121,9 +121,9 @@ class adresscreateview(LoginRequiredMixin, CreateView):
     model = models.adress
     fields = [
         "name",
-        "address1",
-        "address2",
-        "zip_code",
+        "fromv",
+        "to",
+        "driver",
         "city",
         "country",
     ]
@@ -139,9 +139,9 @@ class adressupdateview(LoginRequiredMixin, UpdateView):
     model = models.adress
     fields = [
         "name",
-        "address1",
-        "address2",
-        "zip_code",
+        "fromv",
+        "to",
+        "driver",
         "city",
         "country",
     ]
