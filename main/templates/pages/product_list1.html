@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <h1>products</h1>
+  {% for product in page_obj %}
+    <div class="t">
+    
+            <div class="title"><h1>WATCH ME</h1></div>     
+
+                     <div class="container">
+                             <div class="div-transform">
+                                        <div class="card card1" href="">
+            
+                                                <p>{{ product.name }}</p>
+                                                  <p>
+                                                   <a href="">See it here</a>
+                                                                     </p>
+                                              {% if not forloop.last %}
+                                                            <hr>
+                     </div>
+           
+                             </div>
+      </div>   
+      {% if not forloop.last %}
+       <hr>
+      {% endif %}
+ {% endfor %}
+{% endblock content %}

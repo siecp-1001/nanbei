@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto mt-12 bg-white p-8 rounded-xl shadow-lg">
+  <h1 class="text-3xl font-bold text-purple-700 mb-8 text-center">User Notes</h1>
+
+  {% for notes in object_list %}
+    <div class="mb-6 p-4 bg-purple-50 rounded shadow-sm">
+      <p class="text-gray-800 mb-2">{{ notes.NOTE }}</p>
+      <p class="text-sm text-gray-500">{{ notes.date }}</p>
+
+      <div class="mt-4 space-x-4">
+        <a href="{% url 'main:note_update' notes.id %}" class="text-purple-600 hover:text-purple-800 font-medium">
+          Update Note
+        </a>
+        <a href="{% url 'main:note_delete' notes.id %}" class="text-red-600 hover:text-red-800 font-medium">
+          Delete Note
+        </a>
+      </div>
+    </div>
+    {% if not forloop.last %}
+      <hr class="my-6 border-gray-300" />
+    {% endif %}
+  {% empty %}
+    <p class="text-gray-500 text-center">No notes found.</p>
+  {% endfor %}
+
+  <div class="mt-8 text-center">
+    <a href="{% url 'main:note_create' %}" class="inline-block bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition font-semibold">
+      Add New Note
+    </a>
+  </div>
+</div>
+{% endblock content %}

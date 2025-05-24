@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Nanbei Travel</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {% block extra_css %}
+    <!-- Page specific extra CSS here -->
+    {% endblock %}
+</head>
+<body class="bg-gray-50">
+
+<nav class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/" class="text-purple-700 font-bold text-xl">Nanbei travel</a>
+        </div>
+      </div>
+
+      <!-- Hamburger menu button for mobile -->
+      <div class="flex items-center sm:hidden">
+        <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-purple-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-700" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <!-- Heroicon name: menu -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Heroicon name: x (hidden initially) -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desktop menu -->
+      <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+        <!-- Navigation Links -->
+        <a href="/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Home
+        </a>
+
+        <a href="/about-us/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/about-us/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          About Us
+        </a>
+
+        <a href="/contact-us/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/contact-us/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Contact Us
+        </a>
+
+        <a href="/products/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/products/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Products
+        </a>
+
+        <a href="/signup/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/signup/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Signup
+        </a>
+
+        <a href="/login/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/login/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Login
+        </a>
+
+        <a href="/address/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/address/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          work
+        </a>
+
+        <a href="/basket/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/basket/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Your Basket
+        </a>
+
+        <a href="/chat/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/chat/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Chat
+        </a>
+
+        <a href="/note/" class="inline-flex items-center px-1 pt-1 border-b-2 
+          {% if request.path == '/note/' %}border-purple-700 text-purple-700{% else %}border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300{% endif %} 
+          text-sm font-medium">
+          Notes
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state -->
+  <div class="sm:hidden hidden" id="mobile-menu">
+    <div class="pt-2 pb-4 space-y-1">
+      <a href="/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Home
+      </a>
+
+      <a href="/about-us/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/about-us/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        About Us
+      </a>
+
+      <a href="/contact-us/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/contact-us/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Contact Us
+      </a>
+
+      <a href="/products/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/products/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Products
+      </a>
+
+      <a href="/signup/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/signup/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Signup
+      </a>
+
+      <a href="/login/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/login/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Login
+      </a>
+
+      <a href="/address/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/address/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Address
+      </a>
+
+      <a href="/basket/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/basket/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Your Basket
+      </a>
+
+      <a href="/chat/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/chat/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Chat
+      </a>
+
+      <a href="/note/" class="block pl-3 pr-4 py-2 border-l-4
+        {% if request.path == '/note/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+        text-base font-medium">
+        Notes
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+
+  <!-- Messages -->
+  {% for message in messages %}
+    <div class="mb-4 rounded border px-4 py-3
+      {% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700
+      {% elif message.tags == 'success' %}bg-green-100 border-green-400 text-green-700
+      {% else %}bg-blue-100 border-blue-400 text-blue-700
+      {% endif %}" role="alert">
+      <span class="block sm:inline">{{ message }}</span>
+    </div>
+  {% endfor %}
+
+  <!-- Basket Info -->
+  {% if request.basket %}
+    <div class="mb-4 text-gray-700 font-semibold">
+      <strong>{{ request.basket.count }}</strong> item{{ request.basket.count|pluralize }} in basket
+    </div>
+  {% endif %}
+
+  {% block content %}
+  <!-- Page-specific content goes here -->
+  {% endblock content %}
+  
+</div>
+
+{% block extra_js %}
+<script>
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+    btn.setAttribute('aria-expanded', !isExpanded);
+    menu.classList.toggle('hidden');
+
+    // Toggle hamburger and close icons
+    btn.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+  });
+</script>
+{% endblock extra_js %}
+
+</body>
+</html>

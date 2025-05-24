@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-12 bg-white p-8 rounded-xl shadow-lg">
+
+  <h2 class="text-4xl font-extrabold text-purple-700 mb-8 text-center">Welcome to  Nanbei Travel</h2>
+
+  <p class="text-gray-800 text-center text-lg mb-8">
+    Discover the wonders of Egypt with Nile Travels. From ancient pyramids to stunning beaches, we create unforgettable travel experiences.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+    <div class="overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Pyramids of Giza" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-purple-700 mb-2 text-center">Pyramids of Giza</h3>
+        <p class="text-gray-600 text-sm text-center">Explore the iconic ancient wonders of the world.</p>
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+      <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80" alt="Nile Cruise" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-purple-700 mb-2 text-center">Nile Cruise</h3>
+        <p class="text-gray-600 text-sm text-center">Sail down the Nile River and enjoy breathtaking views.</p>
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Red Sea Diving" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h3 class="font-semibold text-purple-700 mb-2 text-center">Red Sea Diving</h3>
+        <p class="text-gray-600 text-sm text-center">Dive into crystal-clear waters and vibrant coral reefs.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-gray-700 text-center text-lg mb-6">
+    Whether you want to experience ancient history, relax by the beach, or explore vibrant Egyptian culture, Nanbei Travels has you covered.
+  </p>
+
+</div>
+{% endblock content %}

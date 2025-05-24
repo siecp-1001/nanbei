@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto bg-white shadow rounded-lg p-6 mt-6">
+    <h1 class="text-3xl font-bold mb-6 text-purple-700">{{ object.name }}</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Left column: Images -->
+      <div>
+        <h2 class="font-semibold mb-2">Cover images</h2>
+        <div id="imagebox" class="border rounded p-2 h-48 flex items-center justify-center text-gray-400">
+          loading
+        </div>
+      </div>
+
+      <!-- Right column: Product details -->
+      <div class="md:col-span-2">
+        <table class="table-auto w-full border-collapse border border-gray-200 mb-6">
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-2 px-4 font-semibold">Price</th>
+              <td class="py-2 px-4">${{ object.price }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-2 px-4 font-semibold align-top">Description</th>
+              <td class="py-2 px-4">{{ object.description|linebreaks }}</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-2 px-4 font-semibold">Tags</th>
+              <td class="py-2 px-4">
+                {% if object.tags.all %}
+                  {{ object.tags.all|join:", " }}
+                {% else %}
+                  <span class="text-gray-500">No tags available</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-2 px-4 font-semibold">In stock</th>
+              <td class="py-2 px-4">{{ object.in_stock|yesno:"Yes,No" }}</td>
+            </tr>
+            <tr>
+              <th class="text-left py-2 px-4 font-semibold">Updated</th>
+              <td class="py-2 px-4">{{ object.date_updated|date:"F Y" }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a href="{% url 'main:add_to_basket' %}?product_id={{ object.id }}" 
+           class="inline-block bg-purple-700 text-white px-5 py-2 rounded hover:bg-purple-800 transition">
+          Add to basket
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}
