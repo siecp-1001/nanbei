@@ -101,6 +101,44 @@
           text-sm font-medium">
           Notes
         </a>
+        <a href="/contacts/list/" class="block pl-3 pr-4 py-2 border-l-4
+                {% if request.path == '/contacts/list/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+               text-base font-medium">
+            Contacts
+        </a>
+
+        <a href="/contacts/add/" class="block pl-3 pr-4 py-2 border-l-4
+             {% if request.path == '/contacts/add/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+                text-base font-medium">
+                    Add Contact
+        </a>
+
+        <a href="/contacts/print/" class="block pl-3 pr-4 py-2 border-l-4
+            {% if request.path == '/contacts/print/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+            text-base font-medium">
+               Print Contacts PDF
+        </a>
+
+        <a href="/contacts/select/" class="block pl-3 pr-4 py-2 border-l-4
+            {% if request.path == '/contacts/select/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+             text-base font-medium">
+            Select Contacts
+        </a>
+
+        <a href= "/tours/" class="block pl-3 pr-4 py-2 border-l-4
+              {% if request.path == '/tours/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+               text-base font-medium">
+                     Tour Programs
+        </a>
+
+         <a href="/tours/add/" class="block pl-3 pr-4 py-2 border-l-4
+                {% if request.path == '/tours/add/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+                       text-base font-medium">
+                   Add Tour Program
+         </a>
+
+        
+                                      
       </div>
     </div>
   </div>
@@ -167,6 +205,18 @@
         text-base font-medium">
         Notes
       </a>
+       <a href= "/tours/" class="block pl-3 pr-4 py-2 border-l-4
+              {% if request.path == '/tours/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+               text-base font-medium">
+                     Tour Programs
+        </a>
+
+         <a href="/tours/add/" class="block pl-3 pr-4 py-2 border-l-4
+                {% if request.path == '/tours/add/' %}border-purple-700 text-purple-700 bg-purple-50{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800{% endif %} 
+                       text-base font-medium">
+                   Add Tour Program
+         </a>
+
     </div>
   </div>
 </nav>

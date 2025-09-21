@@ -100,12 +100,12 @@ WSGI_APPLICATION = 'booktime.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = { 'default': { 'ENGINE': 'django.db.backends.mysql',
+                           'NAME': 'prmcufte_ahv1', 
+                           'USER': 'prmcufte_ahv1',
+                             'PASSWORD': 'Ahmedayman345#', 
+                             'HOST': '50.6.3.25',
+                               'PORT': '3306', } }
 
 WEBPUSH_SETTINGS = {
     "VAPID_PUBLIC_KEY": "BGOcpczy6Q4LAwMpwfsDVERpi4FT7cJO46M1jSuc1ND_Y3Sxghq4O0T4CEUtmcWvHkSviGX1EFx_1fPE625mMm8=",

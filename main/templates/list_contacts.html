@@ -1,0 +1,23 @@
+<!-- contacts/templates/contacts/list_contacts.html -->
+
+{% extends "contacts/base.html" %}
+
+{% block title %}Contact List{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h1>Contact List</h1>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for contact in contacts %}
+                <li class="list-group-item">{{ contact.name }} - {{ contact.phone_number }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_contact' %}" class="btn btn-primary mt-3">Add Another Contact</a>
+        <br>
+        <a href="{% url 'select_contacts' %}" class="btn btn-secondary mt-3">Print Selected Contacts as PDF</a>
+    </div>
+</div>
+{% endblock %}

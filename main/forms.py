@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.forms import(
     UserCreationForm as Djangousercreationform
 )
+from .models import Contact
 from django.contrib.auth.forms import UsernameField
 from . import models
 from django.contrib.auth.forms import AuthenticationForm
@@ -111,3 +112,48 @@ def add_class(field, css_class):
     if existing_classes:
         css_class = existing_classes + ' ' + css_class
     return field.as_widget(attrs={"class": css_class})
+
+
+
+
+
+
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'phone_number']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class SelectContactsForm(forms.Form):
+    contacts = forms.ModelMultipleChoiceField(
+        queryset=Contact.objects.all(),
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),
+        required=True
+    )
+
+
+
+
+
+from .models import TourProgram
+
+
+class TourProgramForm(forms.ModelForm):
+    class Meta:
+        model = TourProgram
+        fields = '__all__'
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'program_options': forms.CheckboxSelectMultiple,
+            'driver_options': forms.CheckboxSelectMultiple,
+            'car_options': forms.CheckboxSelectMultiple,
+            'guide_options': forms.CheckboxSelectMultiple,
+            'hotel_options': forms.CheckboxSelectMultiple,
+            'flight_options': forms.CheckboxSelectMultiple,
+        }
+

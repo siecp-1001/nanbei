@@ -107,3 +107,17 @@ admin.site.register(models.notes)
 admin.site.register(models.basket) 
 admin.site.register(models.Room) 
 admin.site.register(models.Message)
+admin.site.register(models.TourProgram)
+
+admin.site.register(models.ProgramOption)
+admin.site.register(models.DriverOption)
+admin.site.register(models.CarOption)
+admin.site.register(models.GuideOption)
+admin.site.register(models.HotelOption)
+admin.site.register(models.FlightOption)
+
+
+
+class TourProgramAdmin(admin.ModelAdmin):
+    list_display = ('id', 'date')
+    filter_horizontal = ('program_options', 'driver_options', 'car_options', 'guide_options', 'hotel_options', 'flight_options')

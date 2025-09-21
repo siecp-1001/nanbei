@@ -1,4 +1,5 @@
 from os import path
+import os
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
@@ -14,15 +15,23 @@ from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.debug import sensitive_post_parameters
-from main.forms import authenticationform
+from main.forms import ContactForm, TourProgramForm, authenticationform
 from django.contrib.auth.views import LoginView as DjangoLoginView
 from webpush import send_user_notification
 from django.conf import settings
 from django.contrib.auth.models import User
 import logging
+import os
+from django.conf import settings
+from django.shortcuts import redirect, render
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
+from main.forms import ContactForm, TourProgramForm
+from .models import Contact,TourProgram, ProgramOption
 from main import forms, models
-from .models import basketline, product, Room, Message
+from .models import Contact, TourProgram, basketline, product, Room, Message
 
 logger = logging.getLogger(__name__)
 
@@ -161,12 +170,13 @@ class adressdeleteview(LoginRequiredMixin, DeleteView):
 @login_required
 def room(request, room):
     username = request.GET.get('username', request.user.email)
-    room_details = Room.objects.get(name=room)
+    room_details = get_object_or_404(Room, name=room)
     return render(request, 'room.html', {
         'username': username,
         'room': room,
         'room_details': room_details
     })
+
 
 @login_required
 def checkview(request):
@@ -291,6 +301,75 @@ class notedeleteview(LoginRequiredMixin, DeleteView):
 
 
 
+
+def add_contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_contacts')
+    else:
+        form = ContactForm()
+    return render(request, 'add_contact.html', {'form': form})
+
+
+# View to list all contacts
+def list_contacts(request):
+    contacts = Contact.objects.all()
+    return render(request, 'list_contacts.html', {'contacts': contacts})
+
+
+# View to generate a PDF of contacts
+def print_contacts_pdf(request):
+    contacts = Contact.objects.all()
+    template = get_template('contacts/contacts_pdf.html')
+
+    # Get the full path to the font file
+    font_path = os.path.join(settings.BASE_DIR, 'static', 'Rubik-VariableFont_wght.ttf')
+
+    # Render the template with the context
+    html = template.render({'contacts': contacts, 'font_path': font_path})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="contacts.pdf"'
+
+    # Create the PDF
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        # Handle PDF generation errors
+        return HttpResponse('Failed to generate PDF. Please check your template and font file path.')
+
+    return response
+
+
+# View to display contacts for selection
+def select_contacts(request):
+    contacts = Contact.objects.all()
+    return render(request, 'contacts/select_contacts.html', {'contacts': contacts})
+
+
+
+
+
+def add_tour_program(request):
+    if request.method == 'POST':
+        form = TourProgramForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main:list_tour_programs')  # Redirect to list after saving
+    else:
+        form = TourProgramForm()
+
+    return render(request, 'add_tour.html', {'form': form})
+
+
+# View to List Saved Tour Programs
+def list_tour_programs(request):
+    programs = TourProgram.objects.all()
+    return render(request, 'list_tour.html', {'programs': programs})
+
+
+
 def my_view(request):
     menu_items = [
         ('Home', '/'),
@@ -303,5 +382,12 @@ def my_view(request):
         ('Your Basket', '/basket/'),
         ('Chat', '/chat/'),
         ('Notes', '/note/'),
+        ('Contacts', '/contacts/'),  # List contacts
+        ('Add Contact', '/add-contact/'),
+        ('Print Contacts PDF', '/print-contacts-pdf/'),
+        ('Select Contacts', '/select-contacts/'),
+        ('Tour Programs', '/tour-programs/'),  # List tour programs
+        ('Add Tour Program', '/add-tour/'),
     ]
     return render(request, 'template.html', {'menu_items': menu_items})
+

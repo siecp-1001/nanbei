@@ -2,6 +2,7 @@ from django.urls import path
 from .  import views
 from django.views.generic import TemplateView
 from main import views,models
+from main.views import add_contact ,list_contacts ,print_contacts_pdf ,select_contacts ,list_tour_programs ,add_tour_program
 
 from django.views.generic.detail import DetailView
 from django.contrib.auth import views as auth_views
@@ -30,12 +31,21 @@ urlpatterns =  [
     path("contact-us/",views.Contactusview.as_view()),
     path("about-us/",TemplateView.as_view(template_name="pages/about_us.html"),name="about_us",),
     path("",TemplateView.as_view(template_name="pages/home.html"),name="home",),
-     path( "products/", views.roomlistview.as_view(), name="products" ),
+    path( "products/", views.roomlistview.as_view(), name="products" ),
     path('chat/', views.roomlistview.as_view(), name='home'),
-    path('<str:room>/', views.room, name='room'),
+   
     path('chat/checkview', views.checkview, name='checkview'),
     path('send', views.send, name='send'),
     path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+    path("contacts/add/", views.add_contact, name="add_contact"),
+    path("contacts/list/", views.list_contacts, name="list_contacts"),
+    path("contacts/print/", views.print_contacts_pdf, name="print_contacts_pdf"),
+    path("contacts/select/", views.select_contacts, name="select_contacts"),
+
+    # Tour Programs
+    path("tours/", views.list_tour_programs, name="list_tour_programs"),
+    path("tours/add/", views.add_tour_program, name="add_tour_program"),
+    path('<str:room>/', views.room, name='room'),
     
 ]
    
